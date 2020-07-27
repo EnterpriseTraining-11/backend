@@ -2,8 +2,8 @@ package com.github.hieheihei.hotel.admin.model;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("Admin")
-public class AdminModel {
+@Alias("User")
+public class UserModel {
 
     private String id;
     private String password;
