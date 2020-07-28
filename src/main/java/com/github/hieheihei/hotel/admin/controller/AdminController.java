@@ -4,6 +4,7 @@ import com.github.hieheihei.hotel.admin.model.UserModel;
 import com.github.hieheihei.hotel.admin.service.IUserService;
 import com.github.hieheihei.hotel.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @RequestMapping
+    @PostMapping
     public Result<UserModel> login(UserModel um) {
         if (adminService.validate(um)) {
             um = adminService.getById(um.getId());
