@@ -13,7 +13,8 @@
     <!-- map with type -->
     <resultMap type="Room" id="RoomWithTypeResultMap"
                extends="RoomResultMap">
-        <association property="type" resultMap="com.github.hieheihei.hotel.room.mapper.IRoomTypeMapper.RoomTypeResultMap"/>
+        <association property="type"
+                     resultMap="com.github.hieheihei.hotel.room.mapper.IRoomTypeMapper.RoomTypeResultMap"/>
     </resultMap>
 
     <insert id="insert">
@@ -41,7 +42,6 @@
     <select id="selectByAllWithType" resultMap="RoomWithTypeResultMap">
         select * from room a inner join room_type b on a.type_id=b.id
     </select>
-
 
 
 </mapper>

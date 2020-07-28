@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--guest(id,id_card,gt_name,gender,phone)-->
+<!--        private int id;-->
+<!--        private String idCard;-->
+<!--        private String name;-->
+<!--        private String gender;-->
+<!--        private String phone;-->
+<mapper namespace="com.github.hieheihei.hotel.guest.mapper.IGuestMapper">
+
+    <resultMap id="GuestResultMap" type="Guest">
+        <id property="id" column="id"/>
+        <result property="idCard" column="id_card"/>
+        <result property="name" column="gt_name"/>
+        <result property="gender" column="gender"/>
+        <result property="phone" column="phone"/>
+    </resultMap>
+
+    <insert id="insert">
+        insert into guest (id_card,gt_name,gender,phone) values
+        (#{idCard},#{name},#{gender},#{phone})
+    </insert>
+
+    <delete id="delete">
+        delete from guest where id = #{id}
+    </delete>
+
+    <update id="update">
+        update guest
+        <set>
+            <if test="idCard != null">id_card = #{idCard},</if>
+            <if test="name != null">gt_name = #{gt_name},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="phone != null">phone = #{phone}</if>
+            where id = #{id}
+        </set>
+    </update>
+
+    <select id="selectByAll" resultMap="GuestResultMap">
+        select * from guest
+    </select>
+
+</mapper>
