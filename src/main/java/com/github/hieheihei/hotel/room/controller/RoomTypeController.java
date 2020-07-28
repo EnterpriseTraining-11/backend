@@ -47,6 +47,12 @@ public class RoomTypeController {
         return result;
     }
 
+    /**
+     * payload: id,name,price,maxNum,message
+     * id必有，其他三项可选，只修改不为null的属性
+     * @param rm
+     * @return
+     */
     @CrossOrigin
     @PostMapping(value = "/update")
     public Result<RoomTypeModel> update(@RequestBody RoomTypeModel rm) {
@@ -61,7 +67,7 @@ public class RoomTypeController {
 
     @CrossOrigin
     @GetMapping(value = "/all")
-    public Result<RoomTypeModel> getByAll(@RequestBody RoomTypeModel rm) {
+    public Result<RoomTypeModel> getByAll() {
         Result<RoomTypeModel> result = new Result<>();
 
         //todo
