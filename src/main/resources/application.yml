@@ -10,7 +10,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapping/**/*.xml
-  type-aliases-package: com.github.hieheihei.hotel.admin.model
+  type-aliases-package: com.github.hieheihei.hotel.admin.model,com.github.hieheihei.hotel.room.model
 
 #showSql
 logging:
