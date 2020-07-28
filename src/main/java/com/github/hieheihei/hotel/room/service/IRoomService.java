@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IRoomService {
     List<RoomModel> getByAllWithType();
+    void delete(RoomModel rm);
 }

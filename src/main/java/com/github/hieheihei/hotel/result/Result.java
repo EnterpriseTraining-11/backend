@@ -16,60 +16,66 @@ public class Result<T> {
     private Map<String, Double> doubleMap = new HashMap<>();
     private Map<String, String> stringMap = new HashMap<>();
 
-
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public Result<T> setStatus(String status) {
         this.status = status;
+        return this;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public Result<T> setMessage(String message) {
         this.message = message;
+        return this;
     }
 
     public T getModel() {
         return model;
     }
 
-    public void setModel(T model) {
+    public Result<T> setModel(T model) {
         this.model = model;
+        return this;
     }
 
     public List<T> getModels() {
         return models;
     }
 
-    public void setModels(List<T> models) {
+    public Result<T> setModels(List<T> models) {
         this.models = models;
+        return this;
     }
 
     public Map<String, Integer> getIntMap() {
         return intMap;
     }
 
-    public void setIntMap(Map<String, Integer> intMap) {
+    public Result<T> setIntMap(Map<String, Integer> intMap) {
         this.intMap = intMap;
+        return this;
     }
 
     public Map<String, Double> getDoubleMap() {
         return doubleMap;
     }
 
-    public void setDoubleMap(Map<String, Double> doubleMap) {
+    public Result<T> setDoubleMap(Map<String, Double> doubleMap) {
         this.doubleMap = doubleMap;
+        return this;
     }
 
     public Map<String, String> getStringMap() {
         return stringMap;
     }
 
-    public void setStringMap(Map<String, String> stringMap) {
+    public Result<T> setStringMap(Map<String, String> stringMap) {
         this.stringMap = stringMap;
+        return this;
     }
 }

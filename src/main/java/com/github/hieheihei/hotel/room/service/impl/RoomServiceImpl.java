@@ -20,4 +20,9 @@ public class RoomServiceImpl implements IRoomService {
     public List<RoomModel> getByAllWithType() {
         return roomMapper.selectByAllWithType();
     }
+
+    @Override
+    public void delete(RoomModel rm) {
+        roomMapper.delete(rm);
+    }
 }
