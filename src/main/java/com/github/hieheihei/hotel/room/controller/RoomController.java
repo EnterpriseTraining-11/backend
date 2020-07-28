@@ -40,10 +40,10 @@ public class RoomController {
      * @return
      */
     @CrossOrigin
-    @PostMapping(value = "/delete")
-    public Result<RoomModel> delete(@RequestBody RoomModel rm) {
+    @PostMapping(value = "/remove")
+    public Result<RoomModel> remove(@RequestBody RoomModel rm) {
         Result<RoomModel> result = new Result<>();
-        roomService.delete(rm);
+        roomService.remove(rm);
         result.setStatus("OK");
         result.setMessage("删除成功");
         return result;
@@ -66,11 +66,6 @@ public class RoomController {
         return result;
     }
 
-    /**
-     * param:
-     *
-     * @return
-     */
     @CrossOrigin
     @GetMapping(value = "/query/all")
     public Result<RoomModel> getByAllWithType() {

@@ -36,8 +36,8 @@ public class RoomTypeController {
      * 传入id
      */
     @CrossOrigin
-    @RequestMapping(value = "/delete")
-    public Result<RoomTypeModel> delete(@RequestBody RoomTypeModel rm) {
+    @RequestMapping(value = "/remove")
+    public Result<RoomTypeModel> remove(@RequestBody RoomTypeModel rm) {
         Result<RoomTypeModel> result = new Result<>();
 
         roomTypeService.remove(rm);

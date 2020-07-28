@@ -7,7 +7,7 @@ import java.util.List;
 public interface IRoomService {
     void add(RoomModel rm);
 
-    void delete(RoomModel rm);
+    void remove(RoomModel rm);
 
     void modify(RoomModel rm);
 
