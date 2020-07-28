@@ -5,13 +5,10 @@ import com.github.hieheihei.hotel.room.model.RoomModel;
 import java.util.List;
 
 public interface IRoomService {
+    void add(RoomModel rm);
 
+    void delete(RoomModel rm);
 
-    void add(String code, String type);
-
-    void remove(int id);
-
-    List<RoomModel> getListWithPage(int rows, int page);
-
+    List<RoomModel> getByAllWithType();
 
 }

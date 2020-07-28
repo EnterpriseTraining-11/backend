@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.github.hieheihei.hotel.room.mapper.IRoomMapper">
+
+    <resultMap id="RoomResultMap" type="Room">
+        <id property="id" column="id"/>
+        <result property="code" column="rm_code"/>
+    </resultMap>
+
+    <!-- map with type -->
+    <resultMap type="Room" id="RoomWithTypeResultMap"
+               extends="RoomResultMap">
+        <association property="type" resultMap="com.github.hieheihei.hotel.room.mapper.IRoomTypeMapper.RoomTypeResultMap"/>
+    </resultMap>
+
+    <insert id="insert">
+        insert into room (rm_code,type_id) values
+        (#{code}, #{type.id})
+    </insert>
+    <update id="update">
+        update room set
+        rm_code=#{code}, type_id=#{type.id} where id=#{id}
+    </update>
+    <delete id="delete">
+        delete from room where id=#{id}
+    </delete>
+    <select id="selectByAll" resultMap="RoomResultMap">
+        select * from room
+    </select>
+    <select id="selectById" resultMap="RoomResultMap">
+        select * from room where id=#{id}
+    </select>
+    <select id="selectByAllWithType" resultMap="RoomWithTypeResultMap">
+        select * from room a inner join room_type b on a.type_id=b.id
+    </select>
+
+
+
+</mapper>
