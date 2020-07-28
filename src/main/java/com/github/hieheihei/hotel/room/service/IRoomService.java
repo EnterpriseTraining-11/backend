@@ -9,6 +9,12 @@ public interface IRoomService {
 
     void delete(RoomModel rm);
 
+    void modify(RoomModel rm);
+
     List<RoomModel> getByAllWithType();
+
+    RoomModel getByNameWithType(String name);
+
+    List<RoomModel> getByTypeWithType(int typeId);
 
 }

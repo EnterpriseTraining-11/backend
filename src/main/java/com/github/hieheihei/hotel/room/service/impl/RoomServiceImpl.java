@@ -2,6 +2,7 @@ package com.github.hieheihei.hotel.room.service.impl;
 
 import com.github.hieheihei.hotel.room.mapper.IRoomMapper;
 import com.github.hieheihei.hotel.room.model.RoomModel;
+import com.github.hieheihei.hotel.room.model.RoomTypeModel;
 import com.github.hieheihei.hotel.room.service.IRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,7 @@ public class RoomServiceImpl implements IRoomService {
     public RoomServiceImpl(IRoomMapper roomMapper) {
         this.roomMapper = roomMapper;
     }
-    @Override
-    public List<RoomModel> getByAllWithType() {
-        return roomMapper.selectByAllWithType();
-    }
+
 
     @Override
     public void add(RoomModel rm) {
@@ -29,5 +27,35 @@ public class RoomServiceImpl implements IRoomService {
     @Override
     public void delete(RoomModel rm) {
         roomMapper.delete(rm);
+    }
+
+    @Override
+    public void modify(RoomModel rm) {
+        RoomModel nRm = roomMapper.selectById(rm.getId());
+
+        if (rm.getCode() != null) {
+            nRm.setCode(rm.getCode());
+        }
+        if (rm.getType() != null && rm.getType().getId() != 0) {
+            RoomTypeModel tm = new RoomTypeModel();
+            tm.setId(rm.getType().getId());
+            nRm.setType(tm);
+        }
+        roomMapper.update(nRm);
+    }
+
+    @Override
+    public List<RoomModel> getByAllWithType() {
+        return roomMapper.selectByAllWithType();
+    }
+
+    @Override
+    public RoomModel getByNameWithType(String name) {
+        return roomMapper.selectByNameWithType(name);
+    }
+
+    @Override
+    public List<RoomModel> getByTypeWithType(int typeId) {
+        return roomMapper.selectByTypeWithType(typeId);
     }
 }

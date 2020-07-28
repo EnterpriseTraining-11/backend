@@ -1,10 +1,13 @@
 package com.github.hieheihei.hotel.room.model;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("RoomType")
 public class RoomTypeModel {
 //# room_type(id,tp_name,price,max_num,message)
 
     private int id;
-    private int name;
+    private String name;
     private double price;
     private int maxNum;
     private String message;
@@ -17,11 +20,11 @@ public class RoomTypeModel {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 

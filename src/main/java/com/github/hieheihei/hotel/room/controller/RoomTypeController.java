@@ -17,39 +17,40 @@ public class RoomTypeController {
         this.roomTypeService = roomTypeService;
     }
 
-    @CrossOrigin
-    @PostMapping(value = "/add")
     /**
      * 传入name,price,maxNum,message
      */
+    @CrossOrigin
+    @PostMapping(value = "/add")
     public Result<RoomTypeModel> add(@RequestBody RoomTypeModel rm) {
         Result<RoomTypeModel> result = new Result<>();
 
-        //todo
+        roomTypeService.add(rm);
 
         result.setStatus("OK");
-        result.setMessage("添加成功-服务层未完成");
+        result.setMessage("添加成功");
         return result;
     }
 
-    @CrossOrigin
-    @RequestMapping(value = "/delete")
     /**
      * 传入id
      */
+    @CrossOrigin
+    @RequestMapping(value = "/delete")
     public Result<RoomTypeModel> delete(@RequestBody RoomTypeModel rm) {
         Result<RoomTypeModel> result = new Result<>();
 
-        //todo
+        roomTypeService.remove(rm);
 
         result.setStatus("OK");
-        result.setMessage("删除成功-服务层未完成");
+        result.setMessage("删除成功");
         return result;
     }
 
     /**
      * payload: id,name,price,maxNum,message
-     * id必有，其他三项可选，只修改不为null的属性
+     * id必有，其他4项可选，只修改不为null的属性
+     *
      * @param rm
      * @return
      */
@@ -58,10 +59,10 @@ public class RoomTypeController {
     public Result<RoomTypeModel> update(@RequestBody RoomTypeModel rm) {
         Result<RoomTypeModel> result = new Result<>();
 
-        //todo
+        roomTypeService.modify(rm);
 
         result.setStatus("OK");
-        result.setMessage("更新成功-服务层未完成");
+        result.setMessage("更新成功");
         return result;
     }
 
@@ -70,10 +71,10 @@ public class RoomTypeController {
     public Result<RoomTypeModel> getByAll() {
         Result<RoomTypeModel> result = new Result<>();
 
-        //todo
+        result.setModels(roomTypeService.getByAll());
 
         result.setStatus("OK");
-        result.setMessage("获取成功-服务层未完成");
+        result.setMessage("获取成功");
         return result;
     }
 

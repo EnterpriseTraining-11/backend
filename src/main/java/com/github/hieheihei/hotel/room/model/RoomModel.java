@@ -1,5 +1,8 @@
 package com.github.hieheihei.hotel.room.model;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("Room")
 public class RoomModel {
 
     private int id;
