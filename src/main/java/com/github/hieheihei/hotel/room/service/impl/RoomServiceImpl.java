@@ -22,6 +22,11 @@ public class RoomServiceImpl implements IRoomService {
     }
 
     @Override
+    public void add(RoomModel rm) {
+        roomMapper.insert(rm);
+    }
+
+    @Override
     public void delete(RoomModel rm) {
         roomMapper.delete(rm);
     }

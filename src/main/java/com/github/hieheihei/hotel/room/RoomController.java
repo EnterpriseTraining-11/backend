@@ -29,11 +29,20 @@ public class RoomController {
     @CrossOrigin
     @PostMapping(value = "/delete")
     public Result<RoomModel> delete(@RequestBody Map<String,Object> payLoad){
-        return new Result<RoomModel>().setMessage(String.valueOf(payLoad.get("id")));
-//        Result<RoomModel> result = new Result<>();
-//        roomService.delete(new RoomModel().setId(id));
-//        result.setStatus("OK");
-//        result.setMessage("删除成功");
-//        return result;
+        Result<RoomModel> result = new Result<>();
+        roomService.delete(new RoomModel().setId((Integer) payLoad.get("id")));
+        result.setStatus("OK");
+        result.setMessage("删除成功");
+        return result;
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/add")
+    public Result<RoomModel> add(@RequestBody RoomModel rm){
+        Result<RoomModel> result = new Result<>();
+        roomService.add(rm);
+        result.setStatus("OK");
+        result.setMessage("添加成功");
+        return result;
     }
 }
