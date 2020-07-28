@@ -30,22 +30,7 @@ public class RoomTypeServiceImpl implements IRoomTypeService {
 
     @Override
     public void modify(RoomTypeModel rm) {
-
-        RoomTypeModel nRm = roomTypeMapper.selectById(rm.getId());
-        if (rm.getName() != null) {
-            nRm.setName(rm.getName());
-        }
-        if (rm.getMaxNum() > 0) {
-            nRm.setMaxNum(rm.getMaxNum());
-        }
-        if (rm.getPrice() > 0) {
-            nRm.setPrice(rm.getPrice());
-        }
-        if (rm.getMessage() != null) {
-            nRm.setMessage(rm.getMessage());
-        }
-
-        roomTypeMapper.update(nRm);
+        roomTypeMapper.update(rm);
     }
 
     @Override

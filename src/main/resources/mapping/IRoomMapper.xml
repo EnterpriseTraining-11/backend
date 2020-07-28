@@ -21,9 +21,14 @@
         (#{code}, #{type.id})
     </insert>
     <update id="update">
-        update room set
-        rm_code=#{code}, type_id=#{type.id} where id=#{id}
+        update room
+        <set>
+            <if test="rm_code != null">rm_code=#{code},</if>
+            <if test="type_id != null">type_id=#{type.id}</if>
+        </set>
+        where id=#{id}
     </update>
+
     <delete id="delete">
         delete from room where id=#{id}
     </delete>

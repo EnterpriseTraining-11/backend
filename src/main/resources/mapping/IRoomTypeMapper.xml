@@ -18,8 +18,14 @@
         (#{name}, #{price}, #{max_num}, #{message})
     </insert>
     <update id="update">
-        update room_type set
-        tp_name=#{name}, price=#{price}, max_num=#{max_num}, message=#{message} where id=#{id}
+        update room_type
+        <set>
+            <if test="tp_name != null">tp_name=#{name},</if>
+            <if test="price != null">price=#{price},</if>
+            <if test="max_num != null">max_num=#{max_num},</if>
+            <if test="message != null">message=#{message}</if>
+        </set>
+        where id=#{id}
     </update>
     <delete id="delete">
         delete from room_type where id=#{id}
