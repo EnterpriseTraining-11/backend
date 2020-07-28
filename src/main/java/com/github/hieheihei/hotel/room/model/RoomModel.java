@@ -34,4 +34,13 @@ public class RoomModel {
         this.type = type;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "RoomModel{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", type=" + type +
+                '}';
+    }
 }

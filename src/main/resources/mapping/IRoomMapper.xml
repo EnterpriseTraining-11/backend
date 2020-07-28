@@ -18,11 +18,11 @@
 
     <insert id="insert">
         insert into room (rm_code,type_id) values
-        (#{code}, #{roomType.id})
+        (#{code}, #{type.id})
     </insert>
     <update id="update">
         update room set
-        rm_code=#{code}, type_id=#{roomType.id} where id=#{id}
+        rm_code=#{code}, type_id=#{type.id} where id=#{id}
     </update>
     <delete id="delete">
         delete from room where id=#{id}

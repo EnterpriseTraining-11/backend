@@ -54,4 +54,15 @@ public class RoomTypeModel {
         this.message = message;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "RoomTypeModel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", max_num=" + max_num +
+                ", message='" + message + '\'' +
+                '}';
+    }
 }

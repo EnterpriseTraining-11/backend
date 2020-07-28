@@ -27,7 +27,7 @@ public class RoomController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/delete")
+    @RequestMapping(value = "/delete")
     public Result<RoomModel> delete(@RequestBody Map<String,Object> payLoad){
         Result<RoomModel> result = new Result<>();
         roomService.delete(new RoomModel().setId((Integer) payLoad.get("id")));
@@ -37,7 +37,7 @@ public class RoomController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/add")
+    @RequestMapping(value = "/add")
     public Result<RoomModel> add(@RequestBody RoomModel rm){
         Result<RoomModel> result = new Result<>();
         roomService.add(rm);
