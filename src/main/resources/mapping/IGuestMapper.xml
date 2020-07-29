@@ -31,7 +31,7 @@
         update guest
         <set>
             <if test="idCard != null">id_card = #{idCard},</if>
-            <if test="name != null">gt_name = #{gt_name},</if>
+            <if test="name != null">gt_name = #{name},</if>
             <if test="gender != null">gender = #{gender},</if>
             <if test="phone != null">phone = #{phone}</if>
             where id = #{id}
@@ -41,5 +41,24 @@
     <select id="selectByAll" resultMap="GuestResultMap">
         select * from guest
     </select>
-
+	<select id="selectById" resultMap="GuestResultMap">
+        select * from room where id=#{id}
+    </select>
+    <select id="selectByIdCard" resultMap="GuestResultMap">
+        select * from room where id=#{idCard}
+    </select>
+    <select id="selectByCondition" resultMap="GuestResultMap">
+        select * from guest g
+        <where>
+         	<if test="idCard != null">g.id_Card like #{idCard} and</if>
+         	<if test="name != null">g.gt_name like #{name} and</if>  
+         	<if test="gender != null">g.gender like #{gender} and</if> 
+         	<if test="phone != null">g.phone like #{phone} </if>
+        </where>
+    </select>
+    
+    
+    
+    
+    
 </mapper>
