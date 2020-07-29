@@ -81,8 +81,6 @@ public class RoomController {
 
         result.setModels(roomService.getByConditionWithType(code, typeName));
 
-        result.setModels(roomService.getByAllWithType());
-        //TODO
         result.setStatus("OK");
         result.setMessage("查询成功");
         return result;
