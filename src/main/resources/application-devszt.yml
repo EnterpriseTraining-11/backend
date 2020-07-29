@@ -1,0 +1,20 @@
+server:
+  port: 2333
+
+spring:
+  datasource:
+    username: root
+    password: FOwsjmxd&Tai042
+    url: jdbc:mysql://167.179.96.147:3306/hotel?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapping/**/*.xml
+  type-aliases-package: com.github.hieheihei.hotel.admin.model,com.github.hieheihei.hotel.room.model,com.github.hieheihei.hotel.guest.model
+
+#showSql
+logging:
+  level:
+    com.github.hieheihei.hotel: debug
+    
+ 
