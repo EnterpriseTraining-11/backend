@@ -11,7 +11,7 @@
 <mapper namespace="com.github.hieheihei.hotel.guest.mapper.IGuestMapper">
 
     <resultMap id="GuestResultMap" type="Guest">
-        <id property="id" column="id"/>
+        <id property="id" column="gt_id"/>
         <result property="idCard" column="id_card"/>
         <result property="name" column="gt_name"/>
         <result property="gender" column="gender"/>
@@ -24,7 +24,7 @@
     </insert>
 
     <delete id="delete">
-        delete from guest where id = #{id}
+        delete from guest where gt_id = #{id}
     </delete>
 
     <update id="update">
@@ -34,7 +34,7 @@
             <if test="name != null">gt_name = #{name},</if>
             <if test="gender != null">gender = #{gender},</if>
             <if test="phone != null">phone = #{phone}</if>
-            where id = #{id}
+            where gt_id = #{id}
         </set>
     </update>
 
