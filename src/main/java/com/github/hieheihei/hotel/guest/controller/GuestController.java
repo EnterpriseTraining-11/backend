@@ -49,7 +49,8 @@ public class GuestController {
 
     /**
      * param: idCard, name, gender, phone
-     * 都可选，若非null则使用like进行过滤
+     * 都可选，若非null则进行过滤，其中name使用like过滤
+     *
      * @return
      */
     @CrossOrigin

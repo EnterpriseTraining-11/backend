@@ -74,7 +74,7 @@ public class RoomController {
      */
     @CrossOrigin
     @GetMapping(value = "/query/all")
-    public Result<RoomModel> getByAllWithType(
+    public Result<RoomModel> getByConditionWithType(
             @RequestParam(required = false) String code,
             @RequestParam(required = false) String typeName) {
         Result<RoomModel> result = new Result<>();

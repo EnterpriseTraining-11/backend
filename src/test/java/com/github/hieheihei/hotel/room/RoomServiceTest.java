@@ -45,7 +45,7 @@ public class RoomServiceTest {
             setId(1);
         }});
         roomService.add(rm1);
-        
+
         RoomModel rm2 = roomService.getByCodeWithType("Test1");
         rm2.setCode("Test2");
         rm2.setType(null);
