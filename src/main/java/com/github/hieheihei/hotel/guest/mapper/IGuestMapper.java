@@ -14,5 +14,11 @@ public interface IGuestMapper {
 
     void update(GuestModel gm);
 
+    GuestModel selectById(int id);
+
+    GuestModel selectByIdCard(String idCard);
+
+    List<GuestModel> selectByCondition(String idCard, String name, String gender, String phone);
+
     List<GuestModel> selectByAll();
 }

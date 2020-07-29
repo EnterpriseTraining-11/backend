@@ -19,22 +19,25 @@ public class GuestController {
 
     /**
      * payload: GuestModel
-     * 首先检查提交上来的payload里的idCard对应的guest已经在数据库中，如果不在就插入，否则就根据非null的属性更改相应的guest
-     * @param gm
-     * @return
+     * 检查提交上来的payload里的idCard对应的guest是否已经在数据库中，
+     * 如果不在 就插入，
+     * 如果在 就根据非null的属性更改相应的guest
      */
     @CrossOrigin
     @PostMapping(value = "/add-or-modify")
-    public Result<GuestModel> add(@RequestBody GuestModel gm) {
+    public Result<GuestModel> merge(@RequestBody GuestModel gm) {
         Result<GuestModel> result = new Result<>();
 
-        guestService.add(gm);
+        guestService.merge(gm);
 
         result.setStatus("OK");
         result.setMessage("添加成功");
         return result;
     }
 
+    /**
+     * @param gm gm.id != null
+     */
     @CrossOrigin
     @PostMapping(value = "/remove")
     public Result<GuestModel> remove(@RequestBody GuestModel gm) {
@@ -51,15 +54,18 @@ public class GuestController {
      * param: idCard, name, gender, phone
      * 都可选，若非null则进行过滤，其中name使用like过滤
      *
-     * @return
      */
     @CrossOrigin
     @GetMapping(value = "/query/all")
-    public Result<GuestModel> getByAll() {
+    public Result<GuestModel> getByCondition(
+            @RequestParam(required = false) String idCard,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String gender,
+            @RequestParam(required = false) String phone
+    ) {
         Result<GuestModel> result = new Result<>();
 
-        result.setModels(guestService.getByAll());
-        //TODO
+        result.setModels(guestService.getByCondition(idCard, name, gender, phone));
 
         result.setStatus("OK");
         result.setMessage("获取成功");
@@ -68,15 +74,13 @@ public class GuestController {
 
     /**
      * param: id
-     * @return
      */
     @CrossOrigin
     @GetMapping(value = "/query/id")
-    public Result<GuestModel> getById() {
+    public Result<GuestModel> getById(@RequestParam int id) {
         Result<GuestModel> result = new Result<>();
 
-        result.setModels(guestService.getByAll());
-        //TODO
+        result.setModel(guestService.getById(id));
 
         result.setStatus("OK");
         result.setMessage("获取成功");

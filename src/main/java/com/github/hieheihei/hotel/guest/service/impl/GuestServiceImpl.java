@@ -34,7 +34,31 @@ public class GuestServiceImpl implements IGuestService {
     }
 
     @Override
+    public void merge(GuestModel gm) {
+        if (getByIdCard(gm.getIdCard()) == null) {
+            add(gm);
+        } else {
+            modify(gm);
+        }
+    }
+
+    @Override
     public List<GuestModel> getByAll() {
         return guestMapper.selectByAll();
+    }
+
+    @Override
+    public GuestModel getById(int id) {
+        return guestMapper.selectById(id);
+    }
+
+    @Override
+    public GuestModel getByIdCard(String idCard) {
+        return guestMapper.selectByIdCard(idCard);
+    }
+
+    @Override
+    public List<GuestModel> getByCondition(String idCard, String name, String gender, String phone) {
+        return guestMapper.selectByCondition(idCard, name, gender, phone);
     }
 }
