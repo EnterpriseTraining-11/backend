@@ -69,12 +69,18 @@ public class RoomController {
     /**
      * param: code, typeName
      * code与typeName都可选，若非null则使用like进行过滤
+     *
      * @return
      */
     @CrossOrigin
     @GetMapping(value = "/query/all")
-    public Result<RoomModel> getByAllWithType() {
+    public Result<RoomModel> getByConditionWithType(
+            @RequestParam(required = false) String code,
+            @RequestParam(required = false) String typeName) {
         Result<RoomModel> result = new Result<>();
+
+        result.setModels(roomService.getByConditionWithType(code, typeName));
+
         result.setModels(roomService.getByAllWithType());
         //TODO
         result.setStatus("OK");

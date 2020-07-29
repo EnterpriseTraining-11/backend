@@ -13,8 +13,10 @@ public interface IRoomService {
 
     List<RoomModel> getByAllWithType();
 
-    RoomModel getByNameWithType(String name);
+    RoomModel getByCodeWithType(String code);
 
     List<RoomModel> getByTypeWithType(int typeId);
+
+    List<RoomModel> getByConditionWithType(String code, String typeName);
 
 }

@@ -5,9 +5,18 @@
 
 <mapper namespace="com.github.hieheihei.hotel.room.mapper.IRoomMapper">
     <!--    # room(id,rm_code,type_id)-->
+    <!--    # room_type(id,tp_name,price,max_num,message)-->
     <!--    private int id;-->
     <!--    private String code;-->
     <!--    private RoomTypeModel type;-->
+
+    <!--    public class RoomTypeModel {-->
+    <!--    //# room_type(id,tp_name,price,max_num,message)-->
+    <!--    private int id;-->
+    <!--    private String name;-->
+    <!--    private double price;-->
+    <!--    private int maxNum;-->
+    <!--    private String message;-->
 
 
     <resultMap id="RoomResultMap" type="Room">
@@ -50,6 +59,17 @@
     <select id="selectByNameWithType" resultMap="RoomWithTypeResultMap">
         select * from room a inner join room_type b on a.type_id=b.id
         where a.rm_code = #{code}
+    </select>
+    <select id="selectByTypeWithType" resultMap="RoomWithTypeResultMap">
+        select * from room a inner join room_type b on a.type_id=b.id
+        where b.tp_name = #{type.name}
+    </select>
+    <select id="selectByConditionWithType" resultMap="RoomWithTypeResultMap">
+        select * from room a inner join room_type b on a.type_id=b.id
+        <where>
+            <if test="code != null">a.rm_code like #{code} and</if>
+            <if test="typeName != null">b.tp_name like #{typeName}</if>
+        </where>
     </select>
 
 
