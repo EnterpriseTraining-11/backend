@@ -30,7 +30,7 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public void modify(OrderModel om) {
-        orderMapper.modify(om);
+        orderMapper.update(om);
     }
 
     @Override
