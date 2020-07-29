@@ -66,6 +66,11 @@ public class RoomController {
         return result;
     }
 
+    /**
+     * param: code, typeName
+     * code与typeName都可选，若非null则使用like进行过滤
+     * @return
+     */
     @CrossOrigin
     @GetMapping(value = "/query/all")
     public Result<RoomModel> getByAllWithType() {
@@ -75,30 +80,5 @@ public class RoomController {
         result.setMessage("查询成功");
         return result;
     }
-
-    @CrossOrigin
-    @GetMapping(value = "/query/name")
-    public Result<RoomModel> getByNameWithType(@RequestParam String name) {
-        Result<RoomModel> result = new Result<>();
-        result.setModel(roomService.getByNameWithType(name));
-        result.setStatus("OK");
-        result.setMessage("查询成功");
-        return result;
-    }
-
-    @CrossOrigin
-    @GetMapping(value = "/query/type")
-    public Result<RoomModel> getByTypeWithType(@RequestParam int typeId) {
-        Result<RoomModel> result = new Result<>();
-        result.setModels(roomService.getByTypeWithType(typeId));
-        result.setStatus("OK");
-        result.setMessage("查询成功");
-        return result;
-    }
-
-
-
-
-
 
 }
