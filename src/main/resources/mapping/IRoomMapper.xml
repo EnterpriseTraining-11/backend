@@ -4,6 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.github.hieheihei.hotel.room.mapper.IRoomMapper">
+    <!--    # room(id,rm_code,type_id)-->
+    <!--    private int id;-->
+    <!--    private String code;-->
+    <!--    private RoomTypeModel type;-->
+
 
     <resultMap id="RoomResultMap" type="Room">
         <id property="id" column="id"/>
@@ -24,8 +29,8 @@
     <update id="update">
         update room
         <set>
-            <if test="rm_code != null">rm_code=#{code},</if>
-            <if test="type_id != null">type_id=#{type.id}</if>
+            <if test="code != null">rm_code=#{code},</if>
+            <if test="type != null and type.id != 0">type_id=#{type.id}</if>
         </set>
         where id=#{id}
     </update>
@@ -41,6 +46,10 @@
     </select>
     <select id="selectByAllWithType" resultMap="RoomWithTypeResultMap">
         select * from room a inner join room_type b on a.type_id=b.id
+    </select>
+    <select id="selectByNameWithType" resultMap="RoomWithTypeResultMap">
+        select * from room a inner join room_type b on a.type_id=b.id
+        where a.rm_code = #{code}
     </select>
 
 
