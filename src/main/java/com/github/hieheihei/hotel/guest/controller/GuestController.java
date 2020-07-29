@@ -58,6 +58,24 @@ public class GuestController {
         Result<GuestModel> result = new Result<>();
 
         result.setModels(guestService.getByAll());
+        //TODO
+
+        result.setStatus("OK");
+        result.setMessage("获取成功");
+        return result;
+    }
+
+    /**
+     * param: id
+     * @return
+     */
+    @CrossOrigin
+    @GetMapping(value = "/query/id")
+    public Result<GuestModel> getById() {
+        Result<GuestModel> result = new Result<>();
+
+        result.setModels(guestService.getByAll());
+        //TODO
 
         result.setStatus("OK");
         result.setMessage("获取成功");

@@ -76,6 +76,22 @@ public class RoomController {
     public Result<RoomModel> getByAllWithType() {
         Result<RoomModel> result = new Result<>();
         result.setModels(roomService.getByAllWithType());
+        //TODO
+        result.setStatus("OK");
+        result.setMessage("查询成功");
+        return result;
+    }
+
+    /**
+     * param: id
+     * @return
+     */
+    @CrossOrigin
+    @GetMapping(value = "/query/id")
+    public Result<RoomModel> getByIdWithType() {
+        Result<RoomModel> result = new Result<>();
+        result.setModels(roomService.getByAllWithType());
+        //TODO
         result.setStatus("OK");
         result.setMessage("查询成功");
         return result;

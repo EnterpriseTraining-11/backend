@@ -66,13 +66,34 @@ public class RoomTypeController {
         return result;
     }
 
+    /**
+     * param: name,price,maxNum
+     * 都可选，name若非null则使用like进行过滤,其余两个为查找低于给定值的记录并按price,num降序排列
+     * @return
+     */
     @CrossOrigin
-    @GetMapping(value = "/all")
+    @GetMapping(value = "/query/all")
     public Result<RoomTypeModel> getByAll() {
         Result<RoomTypeModel> result = new Result<>();
 
-        result.setModels(roomTypeService.getByAll());
+//        result.setModels(roomTypeService.getByAll());
+        //TODO
+        result.setStatus("OK");
+        result.setMessage("获取成功");
+        return result;
+    }
 
+    /**
+     * param: id
+     * @return
+     */
+    @CrossOrigin
+    @GetMapping(value = "/query/id")
+    public Result<RoomTypeModel> getById() {
+        Result<RoomTypeModel> result = new Result<>();
+
+//        result.setModels(roomTypeService.getByAll());
+        //TODO
         result.setStatus("OK");
         result.setMessage("获取成功");
         return result;
