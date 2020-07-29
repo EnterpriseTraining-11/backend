@@ -17,8 +17,14 @@ public class GuestController {
         this.guestService = guestService;
     }
 
+    /**
+     * payload: GuestModel
+     * 首先检查提交上来的payload里的idCard对应的guest已经在数据库中，如果不在就插入，否则就根据非null的属性更改相应的guest
+     * @param gm
+     * @return
+     */
     @CrossOrigin
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/add-or-modify")
     public Result<GuestModel> add(@RequestBody GuestModel gm) {
         Result<GuestModel> result = new Result<>();
 
@@ -41,20 +47,13 @@ public class GuestController {
         return result;
     }
 
+    /**
+     * param: idCard, name, gender, phone
+     * 都可选，若非null则使用like进行过滤
+     * @return
+     */
     @CrossOrigin
-    @PostMapping(value = "/modify")
-    public Result<GuestModel> modify(@RequestBody GuestModel gm) {
-        Result<GuestModel> result = new Result<>();
-
-        guestService.modify(gm);
-
-        result.setStatus("OK");
-        result.setMessage("修改成功");
-        return result;
-    }
-
-    @CrossOrigin
-    @GetMapping(value = "/add")
+    @GetMapping(value = "/query/all")
     public Result<GuestModel> getByAll() {
         Result<GuestModel> result = new Result<>();
 
