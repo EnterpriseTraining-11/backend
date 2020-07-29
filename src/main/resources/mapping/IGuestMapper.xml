@@ -42,10 +42,10 @@
         select * from guest
     </select>
 	<select id="selectById" resultMap="GuestResultMap">
-        select * from guest where id=#{id}
+        select * from guest where gt_id=#{id}
     </select>
     <select id="selectByIdCard" resultMap="GuestResultMap">
-        select * from guest where id=#{idCard}
+        select * from guest where id_card=#{idCard}
     </select>
     <select id="selectByCondition" resultMap="GuestResultMap">
         select * from guest g
