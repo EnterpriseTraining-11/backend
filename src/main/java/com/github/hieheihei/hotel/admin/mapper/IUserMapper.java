@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface IUserMapper {
     UserModel selectById(String id);
 
-    void update(UserModel am);
+    void update(UserModel um);
 }

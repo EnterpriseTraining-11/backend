@@ -19,9 +19,9 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public boolean validate(UserModel am) {
-        UserModel find = adminMapper.selectById(am.getId());
-        if (find != null && Objects.equals(am.getPassword(), find.getPassword())) {
+    public boolean validate(UserModel um) {
+        UserModel find = adminMapper.selectById(um.getId());
+        if (find != null && Objects.equals(um.getPassword(), find.getPassword())) {
             return true;
         } else {
             return false;

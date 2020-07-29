@@ -4,9 +4,9 @@ import com.github.hieheihei.hotel.admin.model.UserModel;
 import com.github.hieheihei.hotel.admin.service.IUserService;
 import com.github.hieheihei.hotel.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 
 @RestController
@@ -20,10 +20,13 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @PostMapping
-    public Result<UserModel> login(UserModel um) {
+    @PostMapping("/login")
+    public Result<UserModel> login(@RequestBody UserModel um, HttpSession session) {
         if (adminService.validate(um)) {
             um = adminService.getById(um.getId());
+
+            session.setAttribute("user", um);
+
             //TODO
             Result<UserModel> result = new Result<>();
             result.setStatus("OK");
@@ -35,6 +38,17 @@ public class AdminController {
             result.setMessage("登录失败");
             return result;
         }
+    }
+
+    @GetMapping("/logout")
+    public Result<UserModel> logout(HttpSession session) {
+        Result<UserModel> result = new Result<>();
+
+        session.removeAttribute("user");
+
+        result.setStatus("OK");
+        result.setMessage("登出成功");
+        return result;
     }
 
 
