@@ -20,7 +20,7 @@
 
 
     <resultMap id="RoomResultMap" type="Room">
-        <id property="id" column="id"/>
+        <id property="id" column="rm_id"/>
         <result property="code" column="rm_code"/>
     </resultMap>
 
@@ -41,35 +41,35 @@
             <if test="code != null">rm_code=#{code},</if>
             <if test="type != null &amp;&amp; type.id != 0">type_id=#{type.id}</if>
         </set>
-        where id=#{id}
+        where rm_id=#{id}
     </update>
 
     <delete id="delete">
-        delete from room where id=#{id}
+        delete from room where rm_id=#{id}
     </delete>
     <select id="selectByAll" resultMap="RoomResultMap">
         select * from room
     </select>
     <select id="selectById" resultMap="RoomResultMap">
-        select * from room where id=#{id}
+        select * from room where rm_id=#{id}
     </select>
     <select id="selectByIdWithType" resultMap="RoomWithTypeResultMap">
-        select * from room a inner join room_type b on a.type_id=b.id
-        where a.id = #{id}
+        select * from room a inner join room_type b on a.type_id=b.rt_id
+        where a.rm_id = #{id}
     </select>
     <select id="selectByAllWithType" resultMap="RoomWithTypeResultMap">
-        select * from room a inner join room_type b on a.type_id=b.id
+        select * from room a inner join room_type b on a.type_id=b.rt_id
     </select>
     <select id="selectByNameWithType" resultMap="RoomWithTypeResultMap">
-        select * from room a inner join room_type b on a.type_id=b.id
+        select * from room a inner join room_type b on a.type_id=b.rt_id
         where a.rm_code = #{code}
     </select>
     <select id="selectByTypeWithType" resultMap="RoomWithTypeResultMap">
-        select * from room a inner join room_type b on a.type_id=b.id
+        select * from room a inner join room_type b on a.type_id=b.rt_id
         where b.tp_name = #{type.name}
     </select>
     <select id="selectByConditionWithType" resultMap="RoomWithTypeResultMap">
-        select * from room a inner join room_type b on a.type_id=b.id
+        select * from room a inner join room_type b on a.type_id=b.rt_id
         <where>
             <if test="code != null">a.rm_code like #{code} and</if>
             <if test="typeName != null">b.tp_name like #{typeName}</if>

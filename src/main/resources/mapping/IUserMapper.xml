@@ -6,17 +6,17 @@
 <mapper namespace="com.github.hieheihei.hotel.admin.mapper.IUserMapper">
 
     <resultMap id="AdminResultMap" type="Admin">
-        <id property="id" column="id"/>
+        <id property="id" column="admin_id"/>
         <result property="password" column="ad_password"/>
         <result property="name" column="ad_name"/>
     </resultMap>
 
     <update id="update">
-        update admin set ad_password=#{password},ad_name=#{name} where id=#{id}
+        update admin set ad_password=#{password},ad_name=#{name} where admin_id=#{id}
     </update>
 
     <select id="selectById" resultMap="AdminResultMap">
-        select * from ht_user where id=#{id}
+        select * from ht_user where admin_id=#{id}
     </select>
 
 

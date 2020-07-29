@@ -74,8 +74,8 @@ public class RoomTypeController {
     @GetMapping(value = "/query/all")
     public Result<RoomTypeModel> getByCondition(
             @RequestParam(required = false) String name,
-            @RequestParam(required = false) double priceAtMost,
-            @RequestParam(required = false) int maxNumAtLeast
+            @RequestParam(required = false,defaultValue = "0") double priceAtMost,
+            @RequestParam(required = false,defaultValue = "0") int maxNumAtLeast
     ) {
         Result<RoomTypeModel> result = new Result<>();
 

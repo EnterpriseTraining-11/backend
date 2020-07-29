@@ -6,7 +6,7 @@
 <mapper namespace="com.github.hieheihei.hotel.room.mapper.IRoomTypeMapper">
 
     <resultMap id="RoomTypeResultMap" type="RoomType">
-        <id property="id" column="id"/>
+        <id property="id" column="rt_id"/>
         <result property="name" column="tp_name"/>
         <result property="price" column="price"/>
         <result property="maxNum" column="max_num"/>
@@ -25,16 +25,16 @@
             <if test="maxNum > 0 ">max_num=#{maxNum},</if>
             <if test="message != null">message=#{message}</if>
         </set>
-        where id=#{id}
+        where rt_id=#{id}
     </update>
     <delete id="delete">
-        delete from room_type where id=#{id}
+        delete from room_type where rt_id=#{id}
     </delete>
     <select id="selectByAll" resultMap="RoomTypeResultMap">
         select * from room_type
     </select>
     <select id="selectById" resultMap="RoomTypeResultMap">
-        select * from room_type where id=#{id}
+        select * from room_type where rt_id=#{id}
     </select>
     <select id="selectByName" resultMap="RoomTypeResultMap">
         select * from room_type where tp_name=#{name}
