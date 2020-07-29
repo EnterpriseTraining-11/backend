@@ -25,4 +25,6 @@ public interface IRoomMapper {
     RoomModel selectByNameWithType(String name);
 
     List<RoomModel> selectByTypeWithType(int typeId);
+
+    List<RoomModel> selectByConditionWithType(String code, String typeName);
 }

@@ -39,12 +39,23 @@ public class RoomServiceImpl implements IRoomService {
     }
 
     @Override
-    public RoomModel getByNameWithType(String name) {
+    public RoomModel getByCodeWithType(String name) {
         return roomMapper.selectByNameWithType(name);
     }
 
     @Override
     public List<RoomModel> getByTypeWithType(int typeId) {
         return roomMapper.selectByTypeWithType(typeId);
+    }
+
+    @Override
+    public List<RoomModel> getByConditionWithType(String code, String typeName) {
+        if (code != null) {
+            code = "%" + code + "%";
+        }
+        if (typeName != null) {
+            typeName = "%" + typeName + "%";
+        }
+        return roomMapper.selectByConditionWithType(code, typeName);
     }
 }

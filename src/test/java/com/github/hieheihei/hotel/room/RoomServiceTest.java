@@ -7,17 +7,18 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class RoomServiceTest {
 
-    private IRoomService iRoomService;
+    private IRoomService roomService;
 
     @Autowired
-    public RoomServiceTest(IRoomService iRoomService) {
-        this.iRoomService = iRoomService;
+    public RoomServiceTest(IRoomService roomService) {
+        this.roomService = roomService;
     }
 
     @Test
@@ -27,13 +28,13 @@ public class RoomServiceTest {
         rm1.setType(new RoomTypeModel() {{
             setId(1);
         }});
-        iRoomService.add(rm1);
+        roomService.add(rm1);
 
-        RoomModel rm2 = iRoomService.getByNameWithType("Test1");
+        RoomModel rm2 = roomService.getByCodeWithType("Test1");
         assertNotNull(rm2);
 
-        iRoomService.remove(rm2);
-        assertNull(iRoomService.getByNameWithType("Test1"));
+        roomService.remove(rm2);
+        assertNull(roomService.getByCodeWithType("Test1"));
     }
 
     @Test
@@ -43,14 +44,50 @@ public class RoomServiceTest {
         rm1.setType(new RoomTypeModel() {{
             setId(1);
         }});
-        iRoomService.add(rm1);
-
-        RoomModel rm2 = iRoomService.getByNameWithType("Test1");
+        roomService.add(rm1);
+        
+        RoomModel rm2 = roomService.getByCodeWithType("Test1");
         rm2.setCode("Test2");
         rm2.setType(null);
-        iRoomService.modify(rm2);
-        assertNotNull(iRoomService.getByNameWithType("Test2"));
-        iRoomService.remove(iRoomService.getByNameWithType("Test2"));
+        roomService.modify(rm2);
+        assertNotNull(roomService.getByCodeWithType("Test2"));
+        roomService.remove(roomService.getByCodeWithType("Test2"));
+    }
+
+    @Test
+    void getByConditionWithTypeTest() {
+
+        RoomModel rm1 = new RoomModel();
+        rm1.setCode("Test1");
+        rm1.setType(new RoomTypeModel() {{
+            setId(1);
+        }});
+        roomService.add(rm1);
+        RoomModel rm2 = new RoomModel();
+        rm2.setCode("Test2");
+        rm2.setType(new RoomTypeModel() {{
+            setId(1);
+        }});
+        roomService.add(rm2);
+        RoomModel rm3 = new RoomModel();
+        rm3.setCode("Test3");
+        rm3.setType(new RoomTypeModel() {{
+            setId(2);
+        }});
+        roomService.add(rm3);
+
+
+        List<RoomModel> list1 = roomService.getByConditionWithType("Test1", "普");
+        List<RoomModel> list2 = roomService.getByConditionWithType(null, "普");
+        List<RoomModel> list3 = roomService.getByConditionWithType(null, null);
+
+        assertTrue(list1.size() == 1);
+        assertTrue(list2.size() >= 2);
+        assertTrue(list3.size() >= 3);
+
+        roomService.remove(roomService.getByCodeWithType(rm1.getCode()));
+        roomService.remove(roomService.getByCodeWithType(rm2.getCode()));
+        roomService.remove(roomService.getByCodeWithType(rm3.getCode()));
     }
 
 }
