@@ -12,6 +12,14 @@ public interface IGuestService {
 
     void modify(GuestModel gm);
 
+    void merge(GuestModel gm);
+
     List<GuestModel> getByAll();
+
+    GuestModel getById(int id);
+
+    GuestModel getByIdCard(String idCard);
+
+    List<GuestModel> getByCondition(String idCard, String name, String gender, String phone);
 
 }
