@@ -1,0 +1,19 @@
+package com.github.hieheihei.hotel.order.service;
+
+import com.github.hieheihei.hotel.order.model.OrderModel;
+
+import java.util.List;
+
+public interface IOrderService {
+
+    void add(OrderModel om);
+
+    void remove(OrderModel om);
+
+    void modify(OrderModel om);
+
+    OrderModel getByIdWithRoomAndGuest(int id);
+
+    List<OrderModel> getByAllWithRoomAndGuest();
+
+}

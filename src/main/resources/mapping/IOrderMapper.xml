@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.github.hieheihei.hotel.order.mapper.IOrderMapper">
+
+    <resultMap id="OrderResultMap" type="Order">
+        <id property="id" column="ro_id"/>
+        <result property="start" column="ro_start"/>
+        <result property="end" column="ro_end"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <resultMap id="OrderWithRoomGuestResultMap"
+               type="Order"
+               extends="OrderResultMap">
+        <association property="room"
+                     resultMap="com.github.hieheihei.hotel.room.mapper.IRoomMapper.RoomResultMap"/>
+        <collection property="guests"
+                    ofType="GuestModel"
+                    resultMap="com.github.hieheihei.hotel.guest.mapper.IGuestMapper.GuestResultMap"/>
+    </resultMap>
+    <!--    # room_order(ro_id,room_id,ro_start,ro_end,status)-->
+
+    <insert id="insert">
+        insert into room_order (room_id,ro_start,ro_end,status)
+        values (#{id},#{start},#{end},#{status})
+    </insert>
+
+    <delete id="delete">
+        delete from room_order where ro_id = #{id}
+    </delete>
+
+    <update id="update">
+        update room_order
+        <set>
+            <if test="id != null">room_id = #{id},</if>
+            <if test="start != null">ro_start = #{start},</if>
+            <if test="end != null">ro_end = #{end},</if>
+            <if test="status != null">status = #{status}</if>
+            where ro_id = #{id}
+        </set>
+    </update>
+
+    <select id="selectByIdWithRoomAndGuest" resultMap="OrderWithRoomGuestResultMap">
+        select *
+        from (((room_order a inner join room b  on a.room_id = b.rm_id ) as c
+            inner join guest_room_order d on c.order_id = d.order_id ) as e
+            inner join guest f on e.guest_id = f.gt_id) as g
+        where g.ro_id = #{id}
+    </select>
+    <select id="selectByAllWithRoomAndGuest" resultMap="OrderWithRoomGuestResultMap">
+        select *
+        from ((room_order a inner join room b  on a.room_id = b.rm_id ) as c
+            inner join guest_room_order d on c.order_id = d.order_id ) as e
+            inner join guest f on e.guest_id = f.gt_id
+    </select>
+
+
+</mapper>
