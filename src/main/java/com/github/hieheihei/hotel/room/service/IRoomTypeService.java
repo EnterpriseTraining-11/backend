@@ -6,14 +6,20 @@ import java.util.List;
 
 public interface IRoomTypeService {
 
-    void add(RoomTypeModel rm);
+    void add(RoomTypeModel rt);
 
-    void remove(RoomTypeModel rm);
+    void remove(RoomTypeModel rt);
 
     /**
-     * @param rm rm.id != null
+     * @param rt rt.id != null
      */
-    void modify(RoomTypeModel rm);
+    void modify(RoomTypeModel rt);
+
+    RoomTypeModel getById(int id);
+
+    RoomTypeModel getByName(String name);
+
+    List<RoomTypeModel> getByCondition(String name, double priceAtMost, int maxNumAtLeast);
 
     List<RoomTypeModel> getByAll();
 

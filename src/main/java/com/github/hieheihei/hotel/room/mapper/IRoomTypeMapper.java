@@ -16,5 +16,10 @@ public interface IRoomTypeMapper {
 
     RoomTypeModel selectById(int id);
 
+    RoomTypeModel selectByName(String name);
+
     List<RoomTypeModel> selectByAll();
+
+    List<RoomTypeModel> selectByCondition(String name, double priceAtMost, int maxNumAtLeast);
+
 }

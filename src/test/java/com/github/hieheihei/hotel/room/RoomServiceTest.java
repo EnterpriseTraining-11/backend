@@ -90,4 +90,25 @@ public class RoomServiceTest {
         roomService.remove(roomService.getByCodeWithType(rm3.getCode()));
     }
 
+    @Test
+    public void getByIdWithTypeTest() {
+        RoomModel rm1 = new RoomModel();
+        rm1.setCode("Test1");
+        rm1.setType(new RoomTypeModel() {{
+            setId(1);
+        }});
+        roomService.add(rm1);
+
+        RoomModel rm2 = roomService.getByCodeWithType(rm1.getCode());
+
+        RoomModel rm3 = roomService.getByIdWithType(rm2.getId());
+
+        assertEquals(rm2.getCode(), rm3.getCode());
+        assertEquals(rm2.getId(), rm3.getId());
+        assertEquals(rm2.getType().getId(), rm3.getType().getId());
+
+        roomService.remove(rm3);
+
+    }
+
 }

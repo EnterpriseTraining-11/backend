@@ -20,8 +20,6 @@ public class RoomController {
     /**
      * payload: code, name, type.id
      *
-     * @param rm
-     * @return
      */
     @CrossOrigin
     @PostMapping(value = "/add")
@@ -36,8 +34,6 @@ public class RoomController {
     /**
      * payload: id
      *
-     * @param rm
-     * @return
      */
     @CrossOrigin
     @PostMapping(value = "/remove")
@@ -53,8 +49,6 @@ public class RoomController {
      * payload: id, code, type.id
      * id必有，其他2项可选，只修改不为null的属性
      *
-     * @param rm
-     * @return
      */
     @CrossOrigin
     @PostMapping(value = "/modify")
@@ -69,8 +63,6 @@ public class RoomController {
     /**
      * param: code, typeName
      * code与typeName都可选，若非null则使用like进行过滤
-     *
-     * @return
      */
     @CrossOrigin
     @GetMapping(value = "/query/all")
@@ -88,14 +80,12 @@ public class RoomController {
 
     /**
      * param: id
-     * @return
      */
     @CrossOrigin
     @GetMapping(value = "/query/id")
-    public Result<RoomModel> getByIdWithType() {
+    public Result<RoomModel> getByIdWithType(@RequestParam int id) {
         Result<RoomModel> result = new Result<>();
-        result.setModels(roomService.getByAllWithType());
-        //TODO
+        result.setModel(roomService.getByIdWithType(id));
         result.setStatus("OK");
         result.setMessage("查询成功");
         return result;

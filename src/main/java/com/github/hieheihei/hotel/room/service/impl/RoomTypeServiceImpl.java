@@ -34,6 +34,24 @@ public class RoomTypeServiceImpl implements IRoomTypeService {
     }
 
     @Override
+    public RoomTypeModel getById(int id) {
+        return roomTypeMapper.selectById(id);
+    }
+
+    @Override
+    public RoomTypeModel getByName(String name) {
+        return roomTypeMapper.selectByName(name);
+    }
+
+    @Override
+    public List<RoomTypeModel> getByCondition(String name, double priceAtMost, int maxNumAtLeast) {
+        if (name != null) {
+            name = "%" + name + "%";
+        }
+        return roomTypeMapper.selectByCondition(name, priceAtMost, maxNumAtLeast);
+    }
+
+    @Override
     public List<RoomTypeModel> getByAll() {
         return roomTypeMapper.selectByAll();
     }

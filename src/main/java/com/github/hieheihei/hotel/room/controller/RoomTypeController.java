@@ -50,9 +50,6 @@ public class RoomTypeController {
     /**
      * payload: id,name,price,maxNum,message
      * id必有，其他4项可选，只修改不为null的属性
-     *
-     * @param rm
-     * @return
      */
     @CrossOrigin
     @PostMapping(value = "/update")
@@ -68,16 +65,21 @@ public class RoomTypeController {
 
     /**
      * param: name,price,maxNum
-     * 都可选，name若非null则使用like进行过滤,其余两个为查找低于给定值的记录并按price,num降序排列
-     * @return
+     * 都可选，
+     * if name != null 则 匹配 like %name% 的记录
+     * if priceAtMost > 0 则  匹配 price <= priceAtMost 的记录
+     * if maxNumAtLeast >0 则 匹配 maxNum >= maxNumAtLeast 的记录
      */
     @CrossOrigin
     @GetMapping(value = "/query/all")
-    public Result<RoomTypeModel> getByAll() {
+    public Result<RoomTypeModel> getByCondition(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) double priceAtMost,
+            @RequestParam(required = false) int maxNumAtLeast
+    ) {
         Result<RoomTypeModel> result = new Result<>();
 
-//        result.setModels(roomTypeService.getByAll());
-        //TODO
+        result.setModels(roomTypeService.getByCondition(name, priceAtMost, maxNumAtLeast));
         result.setStatus("OK");
         result.setMessage("获取成功");
         return result;
@@ -85,15 +87,13 @@ public class RoomTypeController {
 
     /**
      * param: id
-     * @return
      */
     @CrossOrigin
     @GetMapping(value = "/query/id")
-    public Result<RoomTypeModel> getById() {
+    public Result<RoomTypeModel> getById(@RequestParam int id) {
         Result<RoomTypeModel> result = new Result<>();
 
-//        result.setModels(roomTypeService.getByAll());
-        //TODO
+        result.setModel(roomTypeService.getById(id));
         result.setStatus("OK");
         result.setMessage("获取成功");
         return result;
