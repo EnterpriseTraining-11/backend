@@ -12,6 +12,8 @@ public interface IOrderService {
 
     void modify(OrderModel om);
 
+    OrderModel getByRoomIdWithRoomAndGuest(int roomId);
+
     OrderModel getByIdWithRoomAndGuest(int id);
 
     List<OrderModel> getByAllWithRoomAndGuest();

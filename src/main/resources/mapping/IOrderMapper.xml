@@ -22,27 +22,38 @@
                     resultMap="com.github.hieheihei.hotel.guest.mapper.IGuestMapper.GuestResultMap"/>
     </resultMap>
     <!--    # room_order(ro_id,room_id,ro_start,ro_end,status)-->
+    <!--    # guest_room_order(order_id,guest_id)-->
 
-    <insert id="insert">
+    <insert id="insertToRoomOrder" useGeneratedKeys="true" keyProperty="id">
         insert into room_order (room_id,ro_start,ro_end,status)
-        values (#{id},#{start},#{end},#{status})
+        values (#{room.id},#{start},#{end},#{status})
     </insert>
 
-    <delete id="delete">
-        delete from room_order where ro_id = #{id}
+    <insert id="insertToGuestRoomOrder">
+        insert into guest_room_order (order_id,guest_id)
+        values (#{orderId},#{guestId})
+    </insert>
+
+    <delete id="deleteFromRoomOrder">
+        delete from room_order where ro_id = #{orderId}
     </delete>
 
-    <update id="update">
+    <delete id="deleteFromGuestRoomOrder">
+        delete from guest_room_order where order_id = #{orderId}
+    </delete>
+
+    <update id="updateRoomOrder">
         update room_order
         <set>
-            <if test="id != null">room_id = #{id},</if>
+            <if test="room != null">room_id = #{room.id},</if>
             <if test="start != null">ro_start = #{start},</if>
             <if test="end != null">ro_end = #{end},</if>
             <if test="status != null">status = #{status}</if>
             where ro_id = #{id}
         </set>
     </update>
-
+    <!--    # room_order(ro_id,room_id,ro_start,ro_end,status)-->
+    <!--    # guest_room_order(order_id,guest_id)-->
     <select id="selectByIdWithRoomAndGuest" resultMap="OrderWithRoomGuestResultMap">
         select *
         from (((room_order a inner join room b  on a.room_id = b.rm_id ) as c
@@ -55,6 +66,13 @@
         from ((room_order a inner join room b  on a.room_id = b.rm_id ) as c
             inner join guest_room_order d on c.order_id = d.order_id ) as e
             inner join guest f on e.guest_id = f.gt_id
+    </select>
+    <select id="selectByRoomIdWithRoomAndGuest" resultMap="OrderWithRoomGuestResultMap">
+        select *
+        from (((room_order a inner join room b  on a.room_id = b.rm_id ) as c
+            inner join guest_room_order d on c.order_id = d.order_id ) as e
+            inner join guest f on e.guest_id = f.gt_id) as g
+        where g.room_id = #{roomId}
     </select>
 
 

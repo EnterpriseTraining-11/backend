@@ -1,5 +1,6 @@
 package com.github.hieheihei.hotel.order.service.impl;
 
+import com.github.hieheihei.hotel.guest.model.GuestModel;
 import com.github.hieheihei.hotel.order.mapper.IOrderMapper;
 import com.github.hieheihei.hotel.order.model.OrderModel;
 import com.github.hieheihei.hotel.order.service.IOrderService;
@@ -20,17 +21,35 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public void add(OrderModel om) {
-        orderMapper.insert(om);
+        orderMapper.insertToRoomOrder(om);
+        List<GuestModel> gs = om.getGuests();
+        for (GuestModel gm : gs) {
+            orderMapper.insertToGuestRoomOrder(om.getId(), gm.getId());
+        }
     }
 
     @Override
     public void remove(OrderModel om) {
-        orderMapper.delete(om);
+        //次序不可换——外键
+        orderMapper.deleteFromGuestRoomOrder(om.getId());
+        orderMapper.deleteFromRoomOrder(om.getId());
     }
 
     @Override
     public void modify(OrderModel om) {
-        orderMapper.update(om);
+        orderMapper.updateRoomOrder(om);
+        List<GuestModel> gs = om.getGuests();
+        if (gs != null) {
+            orderMapper.deleteFromGuestRoomOrder(om.getId());
+            for (GuestModel gm : gs) {
+                orderMapper.insertToGuestRoomOrder(om.getId(), gm.getId());
+            }
+        }
+    }
+
+    @Override
+    public OrderModel getByRoomIdWithRoomAndGuest(int roomId) {
+        return orderMapper.selectByRoomIdWithRoomAndGuest(roomId);
     }
 
     @Override
