@@ -28,7 +28,7 @@ public class GuestController {
     public Result<GuestModel> merge(@RequestBody GuestModel gm) {
         Result<GuestModel> result = new Result<>();
 
-        guestService.merge(gm);
+        result.setModel(guestService.merge(gm));
 
         result.setStatus("OK");
         result.setMessage("添加成功");

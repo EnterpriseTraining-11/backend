@@ -34,12 +34,13 @@ public class GuestServiceImpl implements IGuestService {
     }
 
     @Override
-    public void merge(GuestModel gm) {
+    public GuestModel merge(GuestModel gm) {
         if (getByIdCard(gm.getIdCard()) == null) {
             add(gm);
         } else {
             modify(gm);
         }
+        return getByIdCard(gm.getIdCard());
     }
 
     @Override

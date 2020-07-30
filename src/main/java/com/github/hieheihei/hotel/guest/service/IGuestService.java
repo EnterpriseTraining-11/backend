@@ -12,7 +12,12 @@ public interface IGuestService {
 
     void modify(GuestModel gm);
 
-    void merge(GuestModel gm);
+    /**
+     *
+     * @param gm
+     * @return merged guest
+     */
+    GuestModel merge(GuestModel gm);
 
     List<GuestModel> getByAll();
 
