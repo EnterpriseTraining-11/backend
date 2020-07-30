@@ -39,13 +39,13 @@ public class AdminController {
     }
 
     @CrossOrigin
-    @GetMapping("/validate")
+    @PostMapping("/validate")
     public Result<UserModel> validate(@RequestBody UserModel um) throws Exception {
         Result<UserModel> result = new Result<>();
         um.setPassword(Encrypt.getEncrypt().decrypt(um.getPassword()));
         UserModel validated = adminService.validate(um);
         if (validated != null) {
-            validated.setPassword(Encrypt.getEncrypt().decrypt(um.getPassword()));
+            validated.setPassword(Encrypt.getEncrypt().encrypt(um.getPassword()));
             result.setModel(validated);
             result.setStatus("OK");
             result.setMessage("登录成功");
