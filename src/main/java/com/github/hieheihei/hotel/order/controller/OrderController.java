@@ -67,4 +67,14 @@ public class OrderController {
         return result;
     }
 
+    @CrossOrigin
+    @GetMapping("/query/all-id")
+    public Result<OrderModel> getByIdWithRoomAndRoomTypeAndGuest(@RequestParam int id) {
+        Result<OrderModel> result = new Result<>();
+        result.setModel(orderService.getByIdWithRoomAndRoomTypeAndGuest(id));
+        result.setStatus("OK");
+        result.setMessage("获取成功");
+        return result;
+    }
+
 }

@@ -16,6 +16,8 @@ public interface IOrderService {
 
     OrderModel getByIdWithRoomAndGuest(int id);
 
+    OrderModel getByIdWithRoomAndRoomTypeAndGuest(int id);
+
     List<OrderModel> getByAllWithRoomAndGuest();
 
 }

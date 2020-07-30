@@ -25,7 +25,7 @@ public class OrderServiceTest {
 
     private OrderModel generateOrderModel() {
         RoomModel rm = new RoomModel();
-        rm.setId(1);
+        rm.setId(2);
 
         GuestModel gm1 = new GuestModel();
         gm1.setId(1);
@@ -122,6 +122,21 @@ public class OrderServiceTest {
         assertEquals(om1.getRoom().getId(), om2.getRoom().getId());
         assertEquals(om1.getGuests().size(), om2.getGuests().size());
         assertEquals(om1.getStart(), om2.getStart());
+
+        orderService.remove(om2);
+    }
+
+    @Test
+    public void getByIdWithRoomAndRoomTypeAndGuestTest() {
+        OrderModel om1 = generateOrderModel();
+        orderService.add(om1);
+
+        OrderModel om2 = orderService.getByIdWithRoomAndRoomTypeAndGuest(om1.getId());
+
+        assertEquals(om1.getRoom().getId(), om2.getRoom().getId());
+        assertEquals(om1.getGuests().size(), om2.getGuests().size());
+        assertEquals(om1.getStart(), om2.getStart());
+        assertNotNull(om2.getRoom().getType());
 
         orderService.remove(om2);
     }
