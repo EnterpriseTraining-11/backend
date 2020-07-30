@@ -20,4 +20,6 @@ public interface IOrderService {
 
     List<OrderModel> getByAllWithRoomAndGuest();
 
+    List<OrderModel> selectByAllWithRoomAndGuest();
+
 }

@@ -27,4 +27,6 @@ public interface IOrderMapper {
 
     List<OrderModel> selectByAllWithRoomAndGuest();
 
+    List<OrderModel> selectByRoomIdWithRoomAndTypeAndGuest();
+
 }

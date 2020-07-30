@@ -51,7 +51,7 @@ public class OrderController {
     @GetMapping("/query/all")
     public Result<OrderModel> getByAllWithRoomAndGuest() {
         Result<OrderModel> result = new Result<>();
-        result.setModels(orderService.getByAllWithRoomAndGuest());
+        result.setModels(orderService.selectByAllWithRoomAndGuest());
         result.setStatus("OK");
         result.setMessage("获取成功");
         return result;

@@ -73,4 +73,9 @@ public class OrderServiceImpl implements IOrderService {
     public List<OrderModel> getByAllWithRoomAndGuest() {
         return orderMapper.selectByAllWithRoomAndGuest();
     }
+
+    @Override
+    public List<OrderModel> selectByAllWithRoomAndGuest() {
+        return orderMapper.selectByRoomIdWithRoomAndTypeAndGuest();
+    }
 }
