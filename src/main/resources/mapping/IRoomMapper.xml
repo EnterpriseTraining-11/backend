@@ -71,8 +71,8 @@
     <select id="selectByConditionWithType" resultMap="RoomWithTypeResultMap">
         select * from room a inner join room_type b on a.type_id=b.rt_id
         <where>
-            <if test="code != null">a.rm_code like #{code} and</if>
-            <if test="typeName != null">b.tp_name like #{typeName}</if>
+            <if test="code != null">a.rm_code like #{code}</if>
+            <if test="typeName != null">and b.tp_name like #{typeName}</if>
         </where>
     </select>
 

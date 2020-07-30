@@ -50,10 +50,10 @@
     <select id="selectByCondition" resultMap="GuestResultMap">
         select * from guest g
         <where>
-         	<if test="idCard != null">g.id_Card like #{idCard} and</if>
-         	<if test="name != null">g.gt_name like #{name} and</if>  
-         	<if test="gender != null">g.gender like #{gender} and</if> 
-         	<if test="phone != null">g.phone like #{phone} </if>
+            <if test="idCard != null">g.id_Card like #{idCard}</if>
+            <if test="name != null">and g.gt_name like #{name}</if>
+            <if test="gender != null">and g.gender like #{gender}</if>
+            <if test="phone != null">and g.phone like #{phone}</if>
         </where>
     </select>
     
