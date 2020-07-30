@@ -4,7 +4,7 @@ import com.github.hieheihei.hotel.admin.model.UserModel;
 
 public interface IUserService {
 
-    boolean validate(UserModel am);
+    UserModel validate(UserModel am);
 
     UserModel getById(String id);
 
