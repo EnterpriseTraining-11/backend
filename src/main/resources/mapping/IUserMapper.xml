@@ -19,5 +19,9 @@
         select * from ht_user where us_id=#{id}
     </select>
 
+    <select id="selectByName" resultMap="AdminResultMap">
+        select * from ht_user where us_name=#{name}
+    </select>
+
 
 </mapper>

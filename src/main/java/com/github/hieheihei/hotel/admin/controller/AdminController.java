@@ -19,6 +19,7 @@ public class AdminController {
         this.adminService = adminService;
     }
 
+    @CrossOrigin
     @PostMapping("/login")
     public Result<UserModel> login(@RequestBody UserModel um) throws Exception {
         Result<UserModel> result = new Result<>();
@@ -37,6 +38,7 @@ public class AdminController {
         return result;
     }
 
+    @CrossOrigin
     @GetMapping("/validate")
     public Result<UserModel> validate(@RequestBody UserModel um) throws Exception {
         Result<UserModel> result = new Result<>();

@@ -48,7 +48,7 @@ public class OrderController {
     }
 
     @CrossOrigin
-    @GetMapping("/all")
+    @GetMapping("/query/all")
     public Result<OrderModel> getByAllWithRoomAndGuest() {
         Result<OrderModel> result = new Result<>();
         result.setModels(orderService.getByAllWithRoomAndGuest());
@@ -58,7 +58,7 @@ public class OrderController {
     }
 
     @CrossOrigin
-    @GetMapping("/id")
+    @GetMapping("/query/id")
     public Result<OrderModel> getByIdWithRoomAndGuest(@RequestParam int id) {
         Result<OrderModel> result = new Result<>();
         result.setModel(orderService.getByIdWithRoomAndGuest(id));

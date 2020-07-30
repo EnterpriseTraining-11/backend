@@ -20,7 +20,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserModel validate(UserModel um) {
-        UserModel find = adminMapper.selectById(um.getId());
+        UserModel find = adminMapper.selectByName(um.getName());
         if (find != null && Objects.equals(um.getPassword(), find.getPassword())) {
             return find;
         } else {
