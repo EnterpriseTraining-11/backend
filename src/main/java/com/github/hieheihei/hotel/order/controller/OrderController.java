@@ -18,7 +18,7 @@ public class OrderController {
     }
 
     @CrossOrigin
-    @PutMapping("/add")
+    @PostMapping("/add")
     public Result<OrderModel> add(@RequestBody OrderModel om) {
         Result<OrderModel> result = new Result<>();
         orderService.add(om);
@@ -28,7 +28,7 @@ public class OrderController {
     }
 
     @CrossOrigin
-    @PutMapping("/remove")
+    @PostMapping("/remove")
     public Result<OrderModel> remove(@RequestBody OrderModel om) {
         Result<OrderModel> result = new Result<>();
         orderService.remove(om);
@@ -38,7 +38,7 @@ public class OrderController {
     }
 
     @CrossOrigin
-    @PutMapping("/modify")
+    @PostMapping("/modify")
     public Result<OrderModel> modify(@RequestBody OrderModel om) {
         Result<OrderModel> result = new Result<>();
         orderService.modify(om);
