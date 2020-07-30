@@ -56,10 +56,11 @@
     <!--    # guest_room_order(order_id,guest_id)-->
     <select id="selectByIdWithRoomAndGuest" resultMap="OrderWithRoomGuestResultMap">
         select *
-        from (((room_order a inner join room b  on a.room_id = b.rm_id ) as c
-            inner join guest_room_order d on c.order_id = d.order_id ) as e
-            inner join guest f on e.guest_id = f.gt_id) as g
-        where g.ro_id = #{id}
+        FROM room_order a
+        INNER JOIN room b ON a.room_id = b.rm_id
+        INNER JOIN guest_room_order c ON a.ro_id = c.order_id
+        INNER JOIN guest d ON c.guest_id = d.gt_id
+        where a.ro_id = #{id}
     </select>
     <select id="selectByAllWithRoomAndGuest" resultMap="OrderWithRoomGuestResultMap">
         SELECT *
