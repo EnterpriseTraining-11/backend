@@ -34,8 +34,8 @@
             <if test="name != null">gt_name = #{name},</if>
             <if test="gender != null">gender = #{gender},</if>
             <if test="phone != null">phone = #{phone}</if>
-            where gt_id = #{id}
         </set>
+        where gt_id = #{id}
     </update>
 
     <select id="selectByAll" resultMap="GuestResultMap">
