@@ -4,6 +4,7 @@ import javax.crypto.*;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Base64;
 
 public class Encrypt {
@@ -16,11 +17,10 @@ public class Encrypt {
         this.cipher = cipher;
     }
 
-    public static Encrypt getEncrypt() throws NoSuchAlgorithmException, NoSuchPaddingException {
+    public static Encrypt getEncrypt() throws NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException {
         if (encrypt == null) {
-            KeyGenerator keyGenerator =
-                    KeyGenerator.getInstance("DESede");
-            keyGenerator.init(168);
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("DESede");
+            keyGenerator.init(168, new SecureRandom("紫藤".getBytes("UTF8")));
             encrypt = new Encrypt(keyGenerator.generateKey(), Cipher.getInstance("DESede"));
         }
         return encrypt;

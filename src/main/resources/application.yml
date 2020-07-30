@@ -7,6 +7,8 @@ spring:
     password: FOwsjmxd&Tai042
     url: jdbc:mysql://167.179.96.147:3306/hotel?useUnicode=true&characterEncoding=UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      max-lifetime: 60000
 
 mybatis:
   mapper-locations: classpath:mapping/**/*.xml
